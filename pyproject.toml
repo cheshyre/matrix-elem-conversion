@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "matrix-elem-conversion"
+version = "0.1.0"
+description = ""
+authors = ["Matthias Heinz <heinz.matthias.3@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "matrix_elem_conversion"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
