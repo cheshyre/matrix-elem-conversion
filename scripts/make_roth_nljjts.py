@@ -26,6 +26,26 @@ def print_usage_and_exit(code):
     exit(code)
 
 
+def make_orbital_string(n, l, jj, t) -> str:
+    L_TO_LS = {
+        0: "s",
+        1: "p",
+        2: "d",
+        3: "f",
+        4: "g",
+        5: "h",
+        6: "i",
+    }
+    T_TO_TS = {
+        -1: "p",
+        1: "n",
+    }
+
+    if l in L_TO_LS:
+        return "{}{}{}{}/2".format(T_TO_TS[t], n, L_TO_LS[l], jj)
+    return ""
+
+
 if len(argv) != 2 or argv[1].lower() in ["-h", "--help", "help"]:
     print_usage_and_exit(-1)
 
@@ -37,10 +57,10 @@ except ValueError:
 
 nljjts = nljt_vals(emax)
 
-fstring = "{:>4} {:>4} {:>4} {:>4} {:>4}"
-print("#" + fstring.format("p", "n_p", "l_p", "jj_p", "tz_p"))
+fstring = "{:>4} {:>4} {:>4} {:>4} {:>4} {:>8}"
+print("#" + fstring.format("p", "n_p", "l_p", "jj_p", "tz_p", "orb"))
 for i, nljjt in enumerate(nljjts):
     n, l, jj, t = nljjt
-    print(" " + fstring.format(i, n, l, jj, t))
+    print(" " + fstring.format(i, n, l, jj, t, make_orbital_string(n, l, jj, t)))
 
 
